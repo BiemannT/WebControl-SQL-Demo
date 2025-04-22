@@ -1,0 +1,57 @@
+name: SQL-Demo
+services:
+  sql-2017:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_PID=Express
+      - MSSQL_LCID=1031
+      - MSSQL_MEMORY_LIMIT_MB=4096
+      - MSSQL_SA_PASSWORD=Sql2Admin
+      - TZ=Europe/Berlin
+
+    ports:
+      - "1433:1433"
+
+    volumes:
+      - sqldata2017:/var/opt/mssql:rw
+
+  sql-2019:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_PID=Express
+      - MSSQL_LCID=1031
+      - MSSQL_MEMORY_LIMIT_MB=4096
+      - MSSQL_SA_PASSWORD=Sql2Admin
+      - TZ=Europe/Berlin
+
+    ports:
+      - "1434:1433"
+
+    volumes:
+      - sqldata2019:/var/opt/mssql:rw
+
+  sql-2022:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_PID=Express
+      - MSSQL_LCID=1031
+      - MSSQL_MEMORY_LIMIT_MB=4096
+      - MSSQL_SA_PASSWORD=Sql2Admin
+      - TZ=Europe/Berlin
+
+    ports:
+      - "1435:1433"
+
+    volumes:
+      - sqldata2022:/var/opt/mssql:rw
+
+volumes:
+  sqldata2017:
+  sqldata2019:
+  sqldata2022:

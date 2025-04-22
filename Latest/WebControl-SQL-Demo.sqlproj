@@ -59,8 +59,11 @@
     <Folder Include="dbo" />
     <Folder Include="dbo\Tables" />
     <Folder Include="dbo\Stored Procedures" />
+    <Folder Include="Security" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Errors.sql" />
+    <Build Include="Security\MainUser.sql" />
+    <Build Include="Security\MainLogin.sql" />
   </ItemGroup>
 </Project>

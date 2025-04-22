@@ -4,6 +4,7 @@
 # Set file handlings.
 *.md      text diff=markdown
 *.sql     text
+*.yaml    text
 
 # Exclude files from export.
 .gitattributes     export-ignore
@@ -13,3 +14,4 @@
 /LICENSE           export-ignore
 *.sln              export-ignore
 *.sqlproj          export-ignore
+*.yaml             export-ignore
