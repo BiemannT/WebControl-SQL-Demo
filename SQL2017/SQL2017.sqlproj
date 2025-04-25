@@ -22,6 +22,7 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DacApplicationName>WebControl-SQL-Demo</DacApplicationName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -69,6 +70,9 @@
     </Build>
     <Build Include="..\Latest\Security\MainUser.sql">
       <Link>Security\MainUser.sql</Link>
+    </Build>
+    <Build Include="..\Latest\dbo\Tables\Users.sql">
+      <Link>dbo\Tables\Users.sql</Link>
     </Build>
   </ItemGroup>
 </Project>

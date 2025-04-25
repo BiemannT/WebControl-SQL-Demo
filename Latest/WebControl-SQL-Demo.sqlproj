@@ -65,5 +65,6 @@
     <Build Include="dbo\Tables\Errors.sql" />
     <Build Include="Security\MainUser.sql" />
     <Build Include="Security\MainLogin.sql" />
+    <Build Include="dbo\Tables\Users.sql" />
   </ItemGroup>
 </Project>
