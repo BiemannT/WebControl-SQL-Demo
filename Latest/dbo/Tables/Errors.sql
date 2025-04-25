@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Errors] (
 	[Code] INT NOT NULL
-   ,[ObjType] NCHAR(3) NOT NULL
+   ,[ObjType] CHAR(3) NOT NULL
    ,[ObjName] VARCHAR(255) NOT NULL
    ,[Message_en] VARCHAR(MAX) NOT NULL
    ,[Message_de] VARCHAR(MAX) NULL
