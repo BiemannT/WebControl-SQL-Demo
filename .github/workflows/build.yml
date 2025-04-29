@@ -16,6 +16,8 @@ jobs:
 
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
+        with:
+          msbuild-architecture: x64
 
       - name: Paket erzeugen
         run: msbuild -property:Configuration=Release
