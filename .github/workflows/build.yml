@@ -25,7 +25,7 @@ jobs:
         working-directory: ${{ github.workspace }}
 
       - name: Paket erzeugen
-        run: dotnet build --configuration Release
+        run: dotnet build
         working-directory: ${{ github.workspace }}/Latest
 
       - name: Ausgabe anzeigen
