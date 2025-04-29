@@ -1,0 +1,40 @@
+{
+  "version": "1.0",
+  "components": [
+    "Microsoft.VisualStudio.Component.CoreEditor",
+    "Microsoft.VisualStudio.Workload.CoreEditor",
+    "Microsoft.Net.Component.4.8.SDK",
+    "Microsoft.Net.Component.4.7.2.TargetingPack",
+    "Microsoft.Net.ComponentGroup.DevelopmentPrerequisites",
+    "Microsoft.VisualStudio.Component.Roslyn.Compiler",
+    "Microsoft.Component.MSBuild",
+    "Microsoft.VisualStudio.Component.Roslyn.LanguageServices",
+    "Microsoft.VisualStudio.Component.TextTemplating",
+    "Microsoft.VisualStudio.Component.NuGet",
+    "Microsoft.VisualStudio.Component.MSODBC.SQL",
+    "Microsoft.VisualStudio.Component.SQL.LocalDB.Runtime",
+    "Microsoft.VisualStudio.Component.Common.Azure.Tools",
+    "Microsoft.VisualStudio.Component.SQL.CLR",
+    "Microsoft.VisualStudio.Component.MSSQL.CMDLnUtils",
+    "Microsoft.Component.ClickOnce",
+    "Microsoft.VisualStudio.Component.ManagedDesktop.Core",
+    "Microsoft.VisualStudio.Component.SQL.SSDT",
+    "Microsoft.NetCore.Component.Runtime.9.0",
+    "Microsoft.NetCore.Component.Runtime.8.0",
+    "Microsoft.NetCore.Component.SDK",
+    "Microsoft.VisualStudio.Component.DiagnosticTools",
+    "Microsoft.Net.Component.4.7.1.TargetingPack",
+    "Microsoft.Component.Azure.DataLake.Tools",
+    "Microsoft.VisualStudio.Component.ManagedDesktop.Prerequisites",
+    "Microsoft.VisualStudio.Component.DotNetModelBuilder",
+    "Microsoft.VisualStudio.Workload.ManagedDesktop",
+    "Microsoft.VisualStudio.Component.Unity",
+    "Microsoft.VisualStudio.Workload.ManagedGame",
+    "Microsoft.VisualStudio.Workload.Data"
+  ],
+  "extensions": [
+    "https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects",
+    "https://marketplace.visualstudio.com/items?itemName=ProBITools.MicrosoftReportProjectsforVisualStudio2022",
+    "https://marketplace.visualstudio.com/items?itemName=MLNET.ModelBuilder2022"
+  ]
+}

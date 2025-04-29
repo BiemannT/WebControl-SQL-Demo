@@ -17,3 +17,4 @@
 *.sqlproj          export-ignore
 *.yaml             export-ignore
 /.github           export-ignore
+.vsconfig          export-ignore
