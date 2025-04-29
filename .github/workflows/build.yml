@@ -14,18 +14,22 @@ jobs:
       - name: Repository abrufen
         uses: actions/checkout@v4
 
-      - name: Dotnet installieren
-        uses: actions/setup-dotnet@v4
+      # - name: Dotnet installieren
+      #   uses: actions/setup-dotnet@v4
 
       # - name: SqlPackage installieren
       #   run: dotnet tool install -g microsoft.sqlpackage
 
-      - name: Workspace Inhalt anzeigen
-        run: tree
-        working-directory: ${{ github.workspace }}
+      # - name: Workspace Inhalt anzeigen
+      #   run: tree
+      #   working-directory: ${{ github.workspace }}
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
 
       - name: Paket erzeugen
-        run: dotnet build
+        # run: dotnet build
+        run: msbuild Latest\WebControl-SQL-Demo.sqlproj -property:Configuration=Release
         working-directory: ${{ github.workspace }}
 
       - name: Ausgabe anzeigen
