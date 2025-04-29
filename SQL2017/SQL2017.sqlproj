@@ -60,6 +60,7 @@
     <Folder Include="dbo" />
     <Folder Include="dbo\Tables" />
     <Folder Include="Security" />
+    <Folder Include="dbo\Stored Procedures" />
     <Folder Include="dbo\Triggers" />
   </ItemGroup>
   <ItemGroup>
@@ -75,8 +76,29 @@
     <Build Include="..\Latest\dbo\Tables\Users.sql">
       <Link>dbo\Tables\Users.sql</Link>
     </Build>
+    <Build Include="..\Latest\dbo\Stored Procedures\INS_User.sql">
+      <Link>dbo\Stored Procedures\INS_User.sql</Link>
+    </Build>
+    <Build Include="..\Latest\dbo\Stored Procedures\DEL_User.sql">
+      <Link>dbo\Stored Procedures\DEL_User.sql</Link>
+    </Build>
+    <Build Include="..\Latest\dbo\Stored Procedures\UPD_User_Details.sql">
+      <Link>dbo\Stored Procedures\UPD_User_Details.sql</Link>
+    </Build>
+    <Build Include="..\Latest\dbo\Stored Procedures\SEL_Users.sql">
+      <Link>dbo\Stored Procedures\SEL_Users.sql</Link>
+    </Build>
+    <Build Include="..\Latest\dbo\Stored Procedures\SEL_User_Details.sql">
+      <Link>dbo\Stored Procedures\SEL_User_Details.sql</Link>
+    </Build>
     <Build Include="..\Latest\dbo\Triggers\Users_BlockDirect.sql">
       <Link>dbo\Triggers\Users_BlockDirect.sql</Link>
+    </Build>
+    <Build Include="..\Latest\dbo\Stored Procedures\SEL_User_Validate.sql">
+      <Link>dbo\Stored Procedures\SEL_User_Validate.sql</Link>
+    </Build>
+    <Build Include="..\Latest\dbo\Stored Procedures\UPD_User_Pwd.sql">
+      <Link>dbo\Stored Procedures\UPD_User_Pwd.sql</Link>
     </Build>
   </ItemGroup>
 </Project>

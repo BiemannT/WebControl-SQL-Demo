@@ -67,6 +67,13 @@
     <Build Include="Security\MainUser.sql" />
     <Build Include="Security\MainLogin.sql" />
     <Build Include="dbo\Tables\Users.sql" />
+    <Build Include="dbo\Stored Procedures\INS_User.sql" />
+    <Build Include="dbo\Stored Procedures\DEL_User.sql" />
+    <Build Include="dbo\Stored Procedures\UPD_User_Details.sql" />
+    <Build Include="dbo\Stored Procedures\UPD_User_Pwd.sql" />
+    <Build Include="dbo\Stored Procedures\SEL_Users.sql" />
+    <Build Include="dbo\Stored Procedures\SEL_User_Details.sql" />
     <Build Include="dbo\Triggers\Users_BlockDirect.sql" />
+    <Build Include="dbo\Stored Procedures\SEL_User_Validate.sql" />
   </ItemGroup>
 </Project>
