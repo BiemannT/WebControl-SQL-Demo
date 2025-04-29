@@ -23,6 +23,7 @@
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
     <DacApplicationName>WebControl-SQL-Demo</DacApplicationName>
+    <DelayedDurability>DISABLED</DelayedDurability>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -100,5 +101,8 @@
     <Build Include="..\Latest\dbo\Stored Procedures\UPD_User_Pwd.sql">
       <Link>dbo\Stored Procedures\UPD_User_Pwd.sql</Link>
     </Build>
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="PD.sql" />
   </ItemGroup>
 </Project>
