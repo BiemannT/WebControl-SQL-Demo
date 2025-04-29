@@ -1,0 +1,26 @@
+name: Build
+run-name: SQL dacpac-Datei erzeugen
+on:
+  workflow_dispatch:
+
+jobs:
+  Build-Latest-SQL:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Initialisierung
+        run: 'echo Workflow gestartet. Ref-Name: ${{ github.ref_name }}.'
+
+      - name: Repository abrufen
+        uses: actions/checkout@v4
+
+      - name: Dotnet installieren
+        uses: actions/setup-dotnet@v4
+
+      - name: Paket erzeugen
+        run: dotnet build --configuration Release
+        working-directory: ${{ github.workspace }}/latest
+
+      - name: Ausgabe anzeigen
+        run: ls
+        working-directory: ${{ github.workspace }}/latest/bin/Release
