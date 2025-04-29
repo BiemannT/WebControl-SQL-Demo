@@ -17,6 +17,10 @@ jobs:
       - name: Dotnet installieren
         uses: actions/setup-dotnet@v4
 
+      - name: Workspace Inhalt anzeigen
+        run: tree
+        working-directory: ${{ github.workspace }}
+
       - name: Paket erzeugen
         run: dotnet build --configuration Release
         working-directory: ${{ github.workspace }}/latest
