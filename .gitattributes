@@ -5,6 +5,7 @@
 *.md      text diff=markdown
 *.sql     text
 *.yaml    text
+*.yml     text
 
 # Exclude files from export.
 .gitattributes     export-ignore
@@ -15,3 +16,4 @@
 *.sln              export-ignore
 *.sqlproj          export-ignore
 *.yaml             export-ignore
+/.github           export-ignore
