@@ -26,7 +26,7 @@ jobs:
 
       - name: Paket erzeugen
         run: dotnet build
-        working-directory: ${{ github.workspace }}/Latest
+        working-directory: ${{ github.workspace }}
 
       - name: Ausgabe anzeigen
         run: ls
