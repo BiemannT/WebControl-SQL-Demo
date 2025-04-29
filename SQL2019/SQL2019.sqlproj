@@ -60,6 +60,7 @@
     <Folder Include="dbo" />
     <Folder Include="dbo\Tables" />
     <Folder Include="Security" />
+    <Folder Include="dbo\Triggers" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="..\Latest\dbo\Tables\Errors.sql">
@@ -73,6 +74,9 @@
     </Build>
     <Build Include="..\Latest\dbo\Tables\Users.sql">
       <Link>dbo\Tables\Users.sql</Link>
+    </Build>
+    <Build Include="..\Latest\dbo\Triggers\Users_BlockDirect.sql">
+      <Link>dbo\Triggers\Users_BlockDirect.sql</Link>
     </Build>
   </ItemGroup>
 </Project>
