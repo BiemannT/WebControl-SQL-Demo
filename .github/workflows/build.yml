@@ -1,7 +1,8 @@
 name: Build
 run-name: SQL dacpac-Datei erzeugen
 on:
-  workflow_dispatch:
+  release:
+    types: [published]
 
 jobs:
   Build-Latest-SQL:
@@ -25,4 +26,10 @@ jobs:
 
       - name: Ausgabe anzeigen
         run: ls
-        working-directory: ${{ github.workspace }}/Latest/bin/Release
+        working-directory: ${{ github.workspace }}\Latest\bin\Release
+
+      - name: DACPAC im Release ablegen
+        run: gh release upload ${{ github.ref_name }} *.dacpac
+        env:
+          GH_TOKEN: ${{ github.token }}
+        working-directory: ${{ github.workspace }}\Latest\bin\Release
