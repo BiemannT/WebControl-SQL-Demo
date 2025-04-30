@@ -101,6 +101,9 @@
     <Build Include="..\Latest\dbo\Stored Procedures\UPD_User_Pwd.sql">
       <Link>dbo\Stored Procedures\UPD_User_Pwd.sql</Link>
     </Build>
+    <PreDeploy Include="..\Latest\PreDep.sql">
+      <Link>PreDep.sql</Link>
+    </PreDeploy>
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="PD.sql" />

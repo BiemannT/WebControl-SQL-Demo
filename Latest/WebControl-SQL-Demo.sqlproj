@@ -82,4 +82,7 @@
   <ItemGroup>
     <None Include="Basedata\Errors.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="PreDep.sql" />
+  </ItemGroup>
 </Project>
