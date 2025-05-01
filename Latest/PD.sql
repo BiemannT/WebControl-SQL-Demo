@@ -13,4 +13,4 @@ Vorlage für ein Skript nach der Bereitstellung
 -- Fill Base-Tables
 
 -- Errors-Table
-:R .\Basedata\Errors.sql
+:R ..\Latest\Basedata\Errors.sql

@@ -104,8 +104,8 @@
     <PreDeploy Include="..\Latest\PreDep.sql">
       <Link>PreDep.sql</Link>
     </PreDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <PostDeploy Include="PD.sql" />
+    <PostDeploy Include="..\Latest\PD.sql">
+      <Link>PD.sql</Link>
+    </PostDeploy>
   </ItemGroup>
 </Project>
