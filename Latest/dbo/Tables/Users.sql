@@ -8,7 +8,7 @@
    ,[LoginActive] BIT NOT NULL
    ,[LastSuccesfulLogin] DATETIME2(2) NULL
    ,[LastFailedLogin] DATETIME2(2) NULL
-   ,[FailedLoginCounter] SMALLINT NOT NULL CONSTRAINT [DF_Users_FailedLoginCounter] DEFAULT 0
+   ,[FailedLoginCounter] SMALLINT CONSTRAINT [DF_Users_FailedLoginCounter] DEFAULT 0 NOT NULL
    ,[LoginBlocked] AS IIF([FailedLoginCounter] > 3, 1, 0)
    ,CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED ([ID]) ON [DEFAULT]
    ,INDEX [IX_Users] UNIQUE NONCLUSTERED ([LoginName] ASC) ON [DEFAULT]
