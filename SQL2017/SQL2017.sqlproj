@@ -108,5 +108,8 @@
     <PostDeploy Include="..\Latest\PD.sql">
       <Link>PD.sql</Link>
     </PostDeploy>
+    <Build Include="..\Latest\dbo\Tables\VersionHistory.sql">
+      <Link>dbo\Tables\VersionHistory.sql</Link>
+    </Build>
   </ItemGroup>
 </Project>
