@@ -1,7 +1,7 @@
 ﻿-- This trigger blocks all direct transactions to the users-table.
 -- It is only allowed to modify the table by procedures.
 
-CREATE TRIGGER [Users_BlockDirect]
+CREATE TRIGGER [dbo].[Users_BlockDirect]
 ON [dbo].[Users]
 FOR DELETE, INSERT, UPDATE
 AS
