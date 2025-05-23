@@ -23,7 +23,7 @@ jobs:
         with:
           msbuild-architecture: x64
 
-      - name: Paket erzeugen
+      - name: Paket erzeugen SQL2022
         run: msbuild -property:Configuration=Release
         working-directory: ${{ github.workspace }}\Latest
 
@@ -36,3 +36,31 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         working-directory: ${{ github.workspace }}\Latest\bin\Release
+
+      - name: Paket erzeugen SQL2019
+        run: msbuild -property:Configuration=Release
+        working-directory: ${{ github.workspace }}\SQL2019
+
+      - name: Ausgabe anzeigen
+        run: ls
+        working-directory: ${{ github.workspace }}\SQL2019\bin\Release
+
+      - name: DACPAC im Release ablegen
+        run: gh release upload ${{ github.ref_name }} *.dacpac
+        env:
+          GH_TOKEN: ${{ github.token }}
+        working-directory: ${{ github.workspace }}\SQL2019\bin\Release
+
+      - name: Paket erzeugen SQL2017
+        run: msbuild -property:Configuration=Release
+        working-directory: ${{ github.workspace }}\SQL2017
+
+      - name: Ausgabe anzeigen
+        run: ls
+        working-directory: ${{ github.workspace }}\SQL2017\bin\Release
+
+      - name: DACPAC im Release ablegen
+        run: gh release upload ${{ github.ref_name }} *.dacpac
+        env:
+          GH_TOKEN: ${{ github.token }}
+        working-directory: ${{ github.workspace }}\SQL2017\bin\Release
