@@ -10,7 +10,13 @@ Vorlage für ein Skript nach der Bereitstellung
 --------------------------------------------------------------------------------------
 */
 
+SET XACT_ABORT ON;
+
 -- Fill Base-Tables
 
 -- Errors-Table
 :R ..\Latest\Basedata\Errors.sql
+
+-- Set current version number into VersionHistory-table
+INSERT INTO [dbo].[VersionHistory] ([MajorVers], [MinorVers], [PatchVers])
+	VALUES (1, 1, 0);

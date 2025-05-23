@@ -23,6 +23,7 @@
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
     <DelayedDurability>DISABLED</DelayedDurability>
+    <DacVersion>1.1.0.0</DacVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -34,6 +35,7 @@
     <DefineTrace>true</DefineTrace>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <SqlTargetName>WebControl-SQL-Demo-2022</SqlTargetName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -46,6 +48,7 @@
     <DefineTrace>true</DefineTrace>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <SqlTargetName>WebControl-SQL-Demo-2022</SqlTargetName>
   </PropertyGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
@@ -78,6 +81,8 @@
     <Build Include="dbo\Stored Procedures\SEL_User_Details.sql" />
     <Build Include="dbo\Triggers\Users_BlockDirect.sql" />
     <Build Include="dbo\Stored Procedures\SEL_User_Validate.sql" />
+    <Build Include="dbo\Tables\VersionHistory.sql" />
+    <Build Include="dbo\Stored Procedures\SEL_VersionHistory_Latest.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Basedata\Errors.sql" />

@@ -24,6 +24,7 @@
     <TargetDatabaseSet>True</TargetDatabaseSet>
     <DacApplicationName>WebControl-SQL-Demo</DacApplicationName>
     <DelayedDurability>DISABLED</DelayedDurability>
+    <DacVersion>1.1.0.0</DacVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -35,6 +36,7 @@
     <DefineTrace>true</DefineTrace>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <SqlTargetName>WebControl-SQL-Demo-2017</SqlTargetName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -47,6 +49,7 @@
     <DefineTrace>true</DefineTrace>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <SqlTargetName>WebControl-SQL-Demo-2017</SqlTargetName>
   </PropertyGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
@@ -107,5 +110,11 @@
     <PostDeploy Include="..\Latest\PD.sql">
       <Link>PD.sql</Link>
     </PostDeploy>
+    <Build Include="..\Latest\dbo\Tables\VersionHistory.sql">
+      <Link>dbo\Tables\VersionHistory.sql</Link>
+    </Build>
+    <Build Include="..\Latest\dbo\Stored Procedures\SEL_VersionHistory_Latest.sql">
+      <Link>dbo\Stored Procedures\SEL_VersionHistory_Latest.sql</Link>
+    </Build>
   </ItemGroup>
 </Project>

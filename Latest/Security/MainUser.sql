@@ -23,6 +23,9 @@ GO
 GRANT EXECUTE ON [dbo].[SEL_Users] TO [Demo];
 GO
 
+GRANT EXECUTE ON [dbo].[SEL_VersionHistory_Latest] TO [Demo];
+GO
+
 GRANT EXECUTE ON [dbo].[UPD_User_Details] TO [Demo];
 GO
 
