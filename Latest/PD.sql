@@ -17,6 +17,5 @@ SET XACT_ABORT ON;
 -- Errors-Table
 :R ..\Latest\Basedata\Errors.sql
 
--- Set current version number into VersionHistory-table
-INSERT INTO [dbo].[VersionHistory] ([MajorVers], [MinorVers], [PatchVers])
-	VALUES (1, 1, 0);
+-- Write current Databaseversion into the table VersionHistory
+:R ..\Latest\Basedata\VersionHistory.sql
