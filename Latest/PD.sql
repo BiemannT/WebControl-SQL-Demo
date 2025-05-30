@@ -23,7 +23,7 @@ SET @NewPatchVersion = 0;
 -- Write Basic-Data
 
 -- Errors-Table
-:R..\Latest\Basedata\Errors.sql
+:R ..\Latest\Basedata\Errors.sql
 
 -- Database post-deploy update-script
 -- The pre-check of the required minimum version is already done in the pre-deployment script.
@@ -34,7 +34,7 @@ IF ISNULL(@OldMajorVersion, @NewMajorVersion) <= @NewMajorVersion
 BEGIN
 	PRINT 'Execute update script...';
 
-	-- R: ..\Latest\Updates\xyz.sql
+	-- :R ..\Latest\Updates\xyz.sql
 
 END;
 
