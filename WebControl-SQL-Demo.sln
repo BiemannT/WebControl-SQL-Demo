@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "WebControl-SQL-Demo", "Latest\WebControl-SQL-Demo.sqlproj", "{4046BB8C-769C-49E3-9A11-2122760A9CA7}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Latest", "Latest\Latest.sqlproj", "{4046BB8C-769C-49E3-9A11-2122760A9CA7}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SQL2017", "SQL2017\SQL2017.sqlproj", "{566BBF41-7316-4E29-88E1-8128EABEAC3A}"
 EndProject

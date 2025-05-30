@@ -72,20 +72,31 @@ jobs:
           cat Latest.sqlproj
 
       - name: VersionHistory aktualisieren
-        working-directory: ${{ github.workspace }}/Latest/Basedata
+        working-directory: ${{ github.workspace }}/Latest
         run: |
-          sed -i -e "s/VALUES (.*)/VALUES (${{ inputs.MajVers }}, ${{ inputs.MinVers }}, ${{ inputs.PatchVers }})/g" VersionHistory.sql
+          sed -i -e "s/SET @NewMajorVersion.*;/SET @NewMajorVersion = ${{ inputs.MajVers }};/" PD.sql
+          sed -i -e "s/SET @NewMinorVersion.*;/SET @NewMinorVersion = ${{ inputs.MinVers }};/" PD.sql
+          sed -i -e "s/SET @NewPatchVersion.*;/SET @NewPatchVersion = ${{ inputs.PatchVers }};/" PD.sql
 
       - name: VersionHistory Änderung anzeigen
-        working-directory: ${{ github.workspace }}/Latest/Basedata
+        working-directory: ${{ github.workspace }}/Latest
         run: |
-          cat VersionHistory.sql
+          cat PD.sql
 
       - name: Änderungen committen
         working-directory: ${{ github.workspace }}
         run: |
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
-          git add ./Latest/Latest.sqlproj ./SQL2017/SQL2017.sqlproj ./SQL2019/SQL2019.sqlproj ./Latest/Basedata/VersionHistory.sql
+          git add ./Latest/Latest.sqlproj ./SQL2017/SQL2017.sqlproj ./SQL2019/SQL2019.sqlproj ./Latest/PD.sql
           git commit -m 'GitHub Action creates new version'
           git push
+
+      - name: Issue Versionsprüfung erstellen
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+          --title "Anforderung Mindestversion" \
+          --milestone "$VersTag" \
+          --body "Die Mindest Versions Anforderung für die neue Version $VersTag in der Datei **PreDep.sql** prüfen und entsprechend setzen."

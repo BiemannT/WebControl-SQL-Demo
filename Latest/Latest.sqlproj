@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>WebControl_SQL_Demo</Name>
+    <Name>Latest</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{4046bb8c-769c-49e3-9a11-2122760a9ca7}</ProjectGuid>
@@ -23,7 +23,8 @@
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
     <DelayedDurability>DISABLED</DelayedDurability>
-    <DacVersion>1.1.0.0</DacVersion>
+    <DacVersion>1.2.0.0</DacVersion>
+    <DacApplicationName>WebControl-SQL-Demo</DacApplicationName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -66,6 +67,7 @@
     <Folder Include="Security" />
     <Folder Include="Basedata" />
     <Folder Include="dbo\Triggers" />
+    <Folder Include="Updates" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Errors.sql" />
@@ -83,7 +85,6 @@
     <Build Include="dbo\Stored Procedures\SEL_User_Validate.sql" />
     <Build Include="dbo\Tables\VersionHistory.sql" />
     <Build Include="dbo\Stored Procedures\SEL_VersionHistory_Latest.sql" />
-    <None Include="Basedata\VersionHistory.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Basedata\Errors.sql" />
