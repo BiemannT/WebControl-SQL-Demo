@@ -67,6 +67,7 @@
     <Folder Include="Security" />
     <Folder Include="Basedata" />
     <Folder Include="dbo\Triggers" />
+    <Folder Include="Updates" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Errors.sql" />
@@ -84,7 +85,6 @@
     <Build Include="dbo\Stored Procedures\SEL_User_Validate.sql" />
     <Build Include="dbo\Tables\VersionHistory.sql" />
     <Build Include="dbo\Stored Procedures\SEL_VersionHistory_Latest.sql" />
-    <None Include="Basedata\VersionHistory.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Basedata\Errors.sql" />
