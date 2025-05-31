@@ -5,9 +5,9 @@ DECLARE @OldMinorVersion AS TINYINT;
 DECLARE @OldPatchVersion AS TINYINT;
 
 SELECT TOP (1)
-	@OldMajorVersion = [vh].[MajorVersion]
-   ,@OldMinorVersion = [vh].[MinorVersion]
-   ,@OldPatchVersion = [vh].[PatchVersion]
+	@OldMajorVersion = [vh].[MajorVers]
+   ,@OldMinorVersion = [vh].[MinorVers]
+   ,@OldPatchVersion = [vh].[PatchVers]
 FROM [dbo].[VersionHistory] [vh]
 ORDER BY [vh].[InstallDate] DESC;
 
