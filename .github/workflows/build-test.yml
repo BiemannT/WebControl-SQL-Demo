@@ -1,0 +1,141 @@
+name: Build and test SQL-Project
+on:
+  pull_request:
+    types: [opened, reopened, edited]
+    
+  workflow_dispatch:
+
+jobs:
+  build-dacpac:
+    name: DACPAC-Dateien erzeugen
+    runs-on: windows-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Repository abrufen
+        uses: actions/checkout@v4
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+        with:
+          msbuild-architecture: x64
+
+      - name: DACPAC für SQL2022 erzeugen
+        run: msbuild -property:Configuration=Release
+        working-directory: ${{ github.workspace }}\Latest
+
+      - name: DACPAC für SQL2022 zwischenspeichern
+        id: DACPAC-SQL2022
+        if: ${{ success() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: DACPAC-SQL2022
+          path: ${{ github.workspace }}\Latest\bin\Release\*.dacpac
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 6
+          overwrite: true
+
+      - name: DACPAC für SQL2019 erzeugen
+        run: msbuild -property:Configuration=Release
+        working-directory: ${{ github.workspace }}\SQL2019
+
+      - name: DACPAC für SQL2019 zwischenspeichern
+        id: DACPAC-SQL2019
+        if: ${{ success() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: DACPAC-SQL2019
+          path: ${{ github.workspace }}\SQL2019\bin\Release\*.dacpac
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 6
+          overwrite: true
+
+      - name: DACPAC für SQL2017 erzeugen
+        run: msbuild -property:Configuration=Release
+        working-directory: ${{ github.workspace }}\SQL2017
+
+      - name: DACPAC für SQL2017 zwischenspeichern
+        id: DACPAC-SQL2017
+        if: ${{ success() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: DACPAC-SQL2017
+          path: ${{ github.workspace }}\SQL2017\bin\Release\*.dacpac
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 6
+          overwrite: true
+
+  test-sql:
+    name: Datenbankinstallation SQL ${{ matrix.SQLImage.version }}
+    runs-on: ubuntu-latest
+    needs: build-dacpac
+
+    permissions:
+      contents: read
+
+    env:
+      DACPAC-PATH: ${{ github.workspace }}/build
+      SQLTestPW: Sql4Test
+      DBNAME: Test
+
+    strategy:
+      fail-fast: true
+      matrix:
+        SQLImage: [
+          { "version": "2017", "image": "mcr.microsoft.com/mssql/server:2017-latest"},
+          { "version": "2019", "image": "mcr.microsoft.com/mssql/server:2019-latest"},
+          { "version": "2022", "image": "mcr.microsoft.com/mssql/server:2022-latest"}
+        ]
+
+    services:
+      sql:
+        image: ${{ matrix.SQLImage.image }}
+
+        ports:
+          - 1433:1433
+
+        env:
+          ACCEPT_EULA: Y
+          MSSQL_PID: Express
+          MSSQL_LCID: 1031
+          MSSQL_MEMORY_LIMIT_MB: 1024
+          MSSQL_SA_PASSWORD: ${{ env.SQLTestPW }}
+          TZ: Europe/Berlin
+
+    steps:
+      - name: Repository abrufen
+        uses: actions/checkout@v4
+
+      - name: DACPAC abrufen
+        uses: actions/download-artifact@v4
+        with:
+          name: "DACPAC-SQL${{ matrix.SQLImage.version }}"
+          path: ${{ env.DACPAC-PATH }}
+
+      - name: SQL Testumgebung einrichten
+        uses: BiemannT/Action-SQL-DB-Test@v1
+        id: sql-init
+        with:
+          sql-sa-pw: ${{ env.SQLTestPW }}
+          sqlpackage-path: ${{ env.DACPAC-PATH }}
+          db-name: ${{ env.DBNAME }}
+
+      - name: DACPAC aktualisieren
+        run: |
+          sqlpackage /Action:Publish \
+          /SourceFile:"${{ steps.sql-init.outputs.package-file }}" \
+          /TargetDatabaseName:"${{ env.DBNAME }}" \
+          /TargetPassword:"${{ env.SQLTestPW }}" \
+          /TargetServerName:"localhost" \
+          /TargetTrustServerCertificate:"True" \
+          /TargetUser:"sa" \
+          /p:DropObjectsNotInSource="True" \
+          /p:DropPermissionsNotInSource="True" \
+          /p:RegisterDataTierApplication="True"
+
+          echo "DACPAC erfolgreich aktualisiert."

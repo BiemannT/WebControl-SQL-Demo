@@ -1,0 +1,111 @@
+name: Create release after PR
+on:
+  pull_request:
+    types:
+      - closed
+
+    branches:
+      - main
+
+jobs:
+  CreateRel:
+    name: Release erstellen
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+
+    outputs:
+      RelTag: ${{ steps.Mile.outputs.TITLE }}
+
+    if: ${{ github.event.pull_request.merged == true }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Infos Meilenstein abrufen
+        id: Mile
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "Prüfen, ob mit dem Pull-Request ein Meilenstein mit Versionsnummer verbunden ist"
+          echo "TITLE=$(gh pr view ${{ github.event.number }} --json milestone --jq .milestone.title)" >> "$GITHUB_OUTPUT"
+          echo "NUM=$(gh pr view ${{ github.event.number }} --json milestone --jq .milestone.number)" >> "$GITHUB_OUTPUT"
+
+      - name: Tag prüfen
+        if: ${{ steps.Mile.outputs.TITLE != '' }}
+        id: CheckTag
+        uses: kaisugi/action-regex-match@v1.0.1
+        with:
+          text: ${{ steps.Mile.outputs.TITLE }}
+          regex: '^v[0-9]+.[0-9]+.[0-9]+$'
+
+      - name: Release erstellen
+        if: ${{ steps.CheckTag.outputs.match != '' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          NOTES=$(gh pr view ${{ github.event.number }} --json milestone --jq .milestone.description)
+          gh release create ${{ steps.Mile.outputs.TITLE }} --title ${{ steps.Mile.outputs.TITLE }} --notes "$NOTES"
+
+      - name: Meilenstein schließen
+        if: ${{ steps.Mile.outputs.NUM != '' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api \
+          --method PATCH \
+          -H "Accept: application/vnd.github+json" \
+          -H "X-GitHub-Api-Version: 2022-11-28" \
+          /repos/${{ github.repository }}/milestones/${{ steps.Mile.outputs.NUM }} \
+          -f "state=closed"
+
+  PubDac:
+    name: Dacpac veröffentlichen
+    needs: CreateRel
+    runs-on: windows-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+        with:
+          msbuild-architecture: x64
+
+      - name: Paket SQL2022 erzeugen
+        run: msbuild -property:Configuration=Release
+        working-directory: ${{ github.workspace }}\Latest
+
+      - name: Paket SQL2022 ablegen
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload ${{ needs.CreateRel.outputs.RelTag }} *.dacpac
+        working-directory: ${{ github.workspace }}\Latest\bin\Release
+
+      - name: Paket SQL2019 erzeugen
+        run: msbuild -property:Configuration=Release
+        working-directory: ${{ github.workspace }}\SQL2019
+
+      - name: Paket SQL2019 ablegen
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload ${{ needs.CreateRel.outputs.RelTag }} *.dacpac
+        working-directory: ${{ github.workspace }}\SQL2019\bin\Release
+
+      - name: Paket SQL2017 erzeugen
+        run: msbuild -property:Configuration=Release
+        working-directory: ${{ github.workspace }}\SQL2017
+
+      - name: Paket SQL 2017 ablegen
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload ${{ needs.CreateRel.outputs.RelTag }} *.dacpac
+        working-directory: ${{ github.workspace }}\SQL2017\bin\Release
